@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import "./globals.css";
 
 const inlineCss = readFileSync(join(process.cwd(), "app", "globals.css"), "utf8");
 
