@@ -340,12 +340,52 @@ export default function Home() {
               <span>개념 지도</span>
               <strong>{activeNode}</strong>
             </div>
-            <svg className="knowledge-map" viewBox="0 0 780 440" role="img">
-              <path className="link" d="M120 210 C210 80 305 70 390 150" />
-              <path className="link" d="M120 210 C260 305 315 330 455 275" />
-              <path className="link" d="M390 150 C480 115 565 120 660 195" />
-              <path className="link" d="M455 275 C535 315 620 295 660 195" />
-              <path className="link strong" d="M390 150 C430 205 430 232 455 275" />
+            <svg
+              className="knowledge-map"
+              viewBox="0 0 780 440"
+              role="img"
+              aria-label="LLM, LCEL, Neo4j, LangGraph가 연결되는 GraphRAG 개념 지도"
+            >
+              <path
+                className="link"
+                d="M120 210 C210 80 305 70 390 150"
+                fill="none"
+                stroke="rgba(31, 37, 35, 0.16)"
+                strokeLinecap="round"
+                strokeWidth="5"
+              />
+              <path
+                className="link"
+                d="M120 210 C260 305 315 330 455 275"
+                fill="none"
+                stroke="rgba(31, 37, 35, 0.16)"
+                strokeLinecap="round"
+                strokeWidth="5"
+              />
+              <path
+                className="link"
+                d="M390 150 C480 115 565 120 660 195"
+                fill="none"
+                stroke="rgba(31, 37, 35, 0.16)"
+                strokeLinecap="round"
+                strokeWidth="5"
+              />
+              <path
+                className="link"
+                d="M455 275 C535 315 620 295 660 195"
+                fill="none"
+                stroke="rgba(31, 37, 35, 0.16)"
+                strokeLinecap="round"
+                strokeWidth="5"
+              />
+              <path
+                className="link strong"
+                d="M390 150 C430 205 430 232 455 275"
+                fill="none"
+                stroke="rgba(15, 124, 114, 0.34)"
+                strokeLinecap="round"
+                strokeWidth="5"
+              />
               {mapNodes.map((node) => (
                 <g
                   key={node.title}
@@ -360,9 +400,9 @@ export default function Home() {
                     }
                   }}
                 >
-                  <circle r={node.r} />
-                  <text y="-4">{node.a}</text>
-                  <text y="18">{node.b}</text>
+                  <circle r={node.r} fill="#ffffff" stroke="rgba(31, 37, 35, 0.18)" strokeWidth="3" />
+                  <text y="-4" fill="#1f2523" textAnchor="middle">{node.a}</text>
+                  <text y="18" fill="#1f2523" textAnchor="middle">{node.b}</text>
                 </g>
               ))}
             </svg>

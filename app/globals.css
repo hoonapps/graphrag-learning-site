@@ -270,7 +270,9 @@ p {
 
 .knowledge-map {
   width: 100%;
-  min-height: 360px;
+  height: clamp(280px, 36vw, 430px);
+  min-height: 0;
+  aspect-ratio: 39 / 22;
 }
 
 .link {
@@ -777,7 +779,7 @@ code {
   }
 
   .knowledge-map {
-    min-height: 260px;
+    height: clamp(220px, 62vw, 300px);
   }
 
   .route-button {
