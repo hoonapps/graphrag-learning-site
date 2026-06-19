@@ -160,8 +160,8 @@ p {
 
 h1 {
   margin-bottom: 1rem;
-  font-size: clamp(2.15rem, 4.7vw, 4rem);
-  line-height: 1.02;
+  font-size: clamp(2.05rem, 4.15vw, 3.5rem);
+  line-height: 1.04;
   letter-spacing: 0;
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -247,7 +247,8 @@ p {
 .graph-panel {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 24px;
   overflow: hidden;
   padding: 22px;
 }
@@ -273,6 +274,7 @@ p {
   height: clamp(280px, 36vw, 430px);
   min-height: 0;
   aspect-ratio: 39 / 22;
+  flex: 0 0 auto;
 }
 
 .link {
