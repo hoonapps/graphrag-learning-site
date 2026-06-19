@@ -20,10 +20,14 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(246, 247, 242, 0.9)),
     radial-gradient(circle at top left, rgba(15, 124, 114, 0.14), transparent 34rem),
@@ -36,6 +40,11 @@ body {
 
 a {
   color: inherit;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 .topbar {
@@ -195,6 +204,14 @@ p {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
+}
+
+.panel,
+.band,
+.split,
+.route-output,
+.product-summary {
+  min-width: 0;
 }
 
 .quick-grid div {
@@ -429,6 +446,12 @@ p {
   box-shadow: 0 18px 42px rgba(31, 37, 35, 0.07);
 }
 
+.deep-lesson > div,
+.ontology-card,
+.lab-card {
+  min-width: 0;
+}
+
 .deep-number {
   display: grid;
   place-items: center;
@@ -504,6 +527,7 @@ p {
 }
 
 pre {
+  max-width: 100%;
   overflow-x: auto;
   margin: 1rem 0;
   padding: 1rem;
