@@ -743,13 +743,29 @@ code {
     padding: 18px 16px;
   }
 
+  header.topbar {
+    position: static !important;
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    padding: 18px 16px !important;
+  }
+
   nav {
     justify-content: flex-start;
+  }
+
+  header.topbar nav {
+    justify-content: flex-start !important;
   }
 
   main {
     width: min(1180px, calc(100% - 24px));
     padding-top: 18px;
+  }
+
+  main[style] {
+    width: min(1180px, calc(100% - 24px)) !important;
+    padding-top: 18px !important;
   }
 
   .workspace,
@@ -759,8 +775,19 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .workspace[style],
+  .split[style],
+  .section-heading[style],
+  .router[style] {
+    grid-template-columns: 1fr !important;
+  }
+
   .workspace {
     min-height: auto;
+  }
+
+  .workspace[style] {
+    min-height: auto !important;
   }
 
   .timeline,
@@ -789,10 +816,27 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .quick-grid[style],
+  .timeline[style],
+  .idea-grid[style],
+  .curriculum-grid[style],
+  .lab-grid[style],
+  .workflow-grid[style],
+  .product-summary[style],
+  .definition-list div[style] {
+    grid-template-columns: 1fr !important;
+  }
+
   .intro-panel,
   .band,
   .graph-panel {
     padding: 18px;
+  }
+
+  .intro-panel[style],
+  .band[style],
+  .graph-panel[style] {
+    padding: 18px !important;
   }
 
   h1 {
@@ -800,6 +844,13 @@ code {
     line-height: 1.12;
     word-break: normal;
     overflow-wrap: anywhere;
+  }
+
+  h1[style] {
+    font-size: 1.82rem !important;
+    line-height: 1.12 !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
   }
 
   h2 {
@@ -810,9 +861,18 @@ code {
     max-width: 26ch;
   }
 
+  .intro-panel > p[style] {
+    max-width: 26ch !important;
+  }
+
   .knowledge-map {
     min-height: 220px;
     max-height: 300px;
+  }
+
+  .knowledge-map[style] {
+    min-height: 220px !important;
+    max-height: 300px !important;
   }
 
   .route-button {

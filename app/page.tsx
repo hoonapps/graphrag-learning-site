@@ -286,6 +286,19 @@ const productWorkflow = [
   ["Report", "TOP 3, 제외 후보, 구매 전 체크리스트를 생성합니다."],
 ];
 
+const colors = {
+  bg: "#f6f7f2",
+  ink: "#1f2523",
+  muted: "#63706b",
+  line: "#d6ddd6",
+  panel: "rgba(255, 255, 255, 0.92)",
+  panelSoft: "#eef4ee",
+  accent: "#0f7c72",
+  accentStrong: "#07594f",
+  gold: "#c98b2c",
+  blue: "#315f91",
+};
+
 export default function Home() {
   const [activeRoute, setActiveRoute] = useState<RouteKey>("vector");
   const [activeNode, setActiveNode] = useState("Knowledge Graph");
@@ -293,62 +306,239 @@ export default function Home() {
 
   return (
     <>
-      <header className="topbar">
-        <a className="brand" href="#overview" aria-label="GraphRAG Learning Map home">
-          <span className="brand-mark">G</span>
+      <header
+        className="topbar"
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 20,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "1.5rem",
+          minHeight: 76,
+          padding: "0 3vw",
+          borderBottom: `1px solid ${colors.line}`,
+          background: "rgba(246, 247, 242, 0.9)",
+          backdropFilter: "blur(18px)",
+        }}
+      >
+        <a
+          className="brand"
+          href="#overview"
+          aria-label="GraphRAG Learning Map home"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.8rem",
+            color: colors.ink,
+            textDecoration: "none",
+          }}
+        >
+          <span
+            className="brand-mark"
+            style={{
+              display: "grid",
+              placeItems: "center",
+              width: 42,
+              height: 42,
+              borderRadius: 10,
+              background: colors.ink,
+              color: "#fff",
+              fontWeight: 800,
+            }}
+          >
+            G
+          </span>
           <span>
-            <strong>GraphRAG Learning Map</strong>
-            <small>LangChain to Neo4j masterclass</small>
+            <strong style={{ display: "block" }}>GraphRAG Learning Map</strong>
+            <small style={{ display: "block", color: colors.muted, fontSize: "0.78rem", marginTop: "0.15rem" }}>
+              LangChain to Neo4j masterclass
+            </small>
           </span>
         </a>
-        <nav aria-label="주요 섹션">
-          <a href="#curriculum">커리큘럼</a>
-          <a href="#masterclass">핵심 강의</a>
-          <a href="#labs">실습</a>
-          <a href="#product">제품화</a>
+        <nav
+          aria-label="주요 섹션"
+          style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", flexWrap: "wrap", gap: "0.35rem" }}
+        >
+          {[
+            ["#curriculum", "커리큘럼"],
+            ["#masterclass", "핵심 강의"],
+            ["#labs", "실습"],
+            ["#product", "제품화"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              style={{
+                padding: "0.62rem 0.82rem",
+                borderRadius: 8,
+                color: colors.muted,
+                fontSize: "0.92rem",
+                textDecoration: "none",
+              }}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
       </header>
 
-      <main>
-        <section className="workspace" id="overview">
-          <div className="panel intro-panel">
-            <div className="section-kicker">강의 자료 기반 마스터클래스</div>
-            <h1>
+      <main
+        style={{
+          width: "min(1180px, calc(100% - 32px))",
+          maxWidth: "100%",
+          margin: "0 auto",
+          padding: "28px 0 56px",
+        }}
+      >
+        <section
+          className="workspace"
+          id="overview"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
+            gap: 22,
+            alignItems: "stretch",
+            minHeight: "calc(100vh - 104px)",
+            maxWidth: "100%",
+          }}
+        >
+          <div
+            className="panel intro-panel"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              minWidth: 0,
+              padding: "clamp(24px, 4vw, 54px)",
+              border: `1px solid ${colors.line}`,
+              borderRadius: 8,
+              background: colors.panel,
+              boxShadow: "0 24px 60px rgba(31, 37, 35, 0.1)",
+            }}
+          >
+            <div
+              className="section-kicker"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                color: colors.accentStrong,
+                fontSize: "0.78rem",
+                fontWeight: 800,
+                textTransform: "uppercase",
+              }}
+            >
+              강의 자료 기반 마스터클래스
+            </div>
+            <h1
+              style={{
+                marginTop: 0,
+                marginBottom: "1rem",
+                color: colors.ink,
+                fontSize: "clamp(2.05rem, 4.15vw, 3.5rem)",
+                lineHeight: 1.04,
+                wordBreak: "keep-all",
+                overflowWrap: "break-word",
+              }}
+            >
               <span>LangChain 기초에서</span>
               <span>GraphRAG 제품까지</span>
               <span>한 번에 연결하기</span>
             </h1>
-            <p>
+            <p style={{ maxWidth: "58ch", marginTop: 0, color: colors.muted, lineHeight: 1.7 }}>
               이 페이지는 목차가 아니라 수업 자료입니다. LLM 호출, LCEL, 프롬프트, Tool Calling,
               Agent, RAG, Neo4j, Cypher, 온톨로지, GraphRAG, LangGraph 제품화까지 한 흐름으로
               이해하도록 구성했습니다.
             </p>
-            <div className="quick-grid" aria-label="핵심 학습 축">
+            <div
+              className="quick-grid"
+              aria-label="핵심 학습 축"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 210px), 1fr))",
+                gap: 12,
+                marginTop: "2rem",
+              }}
+            >
               {[
                 ["01", "LLM", "확률적 생성, 파라미터, 구조화 출력"],
                 ["02", "LCEL", "Runnable로 연결하는 AI 파이프라인"],
                 ["03", "Graph", "Neo4j, Cypher, 온톨로지 설계"],
                 ["04", "Product", "LangGraph 기반 SpecPilot AI 제품화"],
               ].map(([num, title, body]) => (
-                <div key={num}>
-                  <span>{num}</span>
-                  <strong>{title}</strong>
-                  <p>{body}</p>
+                <div
+                  key={num}
+                  style={{
+                    minWidth: 0,
+                    padding: "1rem",
+                    border: `1px solid ${colors.line}`,
+                    borderRadius: 8,
+                    background: "#fff",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-grid",
+                      placeItems: "center",
+                      width: 30,
+                      height: 30,
+                      marginBottom: "0.7rem",
+                      borderRadius: 999,
+                      background: colors.panelSoft,
+                      color: colors.accentStrong,
+                      fontWeight: 800,
+                      fontSize: "0.78rem",
+                    }}
+                  >
+                    {num}
+                  </span>
+                  <strong style={{ display: "block", marginBottom: "0.25rem", color: colors.ink }}>{title}</strong>
+                  <p style={{ margin: 0, color: colors.muted, fontSize: "0.94rem", lineHeight: 1.7 }}>{body}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <section className="panel graph-panel" aria-label="GraphRAG 구조 시각화">
-            <div className="panel-title">
-              <span>개념 지도</span>
-              <strong>{activeNode}</strong>
+          <section
+            className="panel graph-panel"
+            aria-label="GraphRAG 구조 시각화"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              gap: 24,
+              minWidth: 0,
+              overflow: "hidden",
+              padding: 22,
+              border: `1px solid ${colors.line}`,
+              borderRadius: 8,
+              background: colors.panel,
+              boxShadow: "0 24px 60px rgba(31, 37, 35, 0.1)",
+            }}
+          >
+            <div
+              className="panel-title"
+              style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}
+            >
+              <span style={{ color: colors.muted, fontSize: "0.88rem" }}>개념 지도</span>
+              <strong style={{ color: colors.accentStrong }}>{activeNode}</strong>
             </div>
             <svg
               className="knowledge-map"
               width="780"
               height="440"
-              style={{ width: "100%", maxWidth: "100%", height: "auto", maxHeight: "430px" }}
+              style={{
+                display: "block",
+                width: "100%",
+                maxWidth: "100%",
+                height: "auto",
+                minHeight: 260,
+                maxHeight: "min(430px, 52vh)",
+                aspectRatio: "39 / 22",
+                overflow: "visible",
+              }}
               viewBox="0 0 780 440"
               preserveAspectRatio="xMidYMid meet"
               role="img"
@@ -409,15 +599,24 @@ export default function Home() {
                   }}
                 >
                   <circle r={node.r} fill="#ffffff" stroke="rgba(31, 37, 35, 0.18)" strokeWidth="3" />
-                  <text y="-4" fill="#1f2523" textAnchor="middle">{node.a}</text>
-                  <text y="18" fill="#1f2523" textAnchor="middle">{node.b}</text>
+                  <text y="-4" fill="#1f2523" fontSize="20" fontWeight="800" textAnchor="middle">{node.a}</text>
+                  <text y="18" fill="#1f2523" fontSize="20" fontWeight="800" textAnchor="middle">{node.b}</text>
                 </g>
               ))}
             </svg>
-            <div className="legend">
-              <span><i className="dot lang" />LangChain</span>
-              <span><i className="dot graph" />Neo4j</span>
-              <span><i className="dot agent" />LangGraph</span>
+            <div className="legend" style={{ display: "flex", flexWrap: "wrap", gap: "0.7rem", color: colors.muted, fontSize: "0.9rem" }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                <i className="dot lang" style={{ display: "inline-block", width: 10, height: 10, borderRadius: 999, background: colors.gold }} />
+                LangChain
+              </span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                <i className="dot graph" style={{ display: "inline-block", width: 10, height: 10, borderRadius: 999, background: colors.accent }} />
+                Neo4j
+              </span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                <i className="dot agent" style={{ display: "inline-block", width: 10, height: 10, borderRadius: 999, background: colors.blue }} />
+                LangGraph
+              </span>
             </div>
           </section>
         </section>
