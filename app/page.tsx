@@ -348,6 +348,7 @@ export default function Home() {
               className="knowledge-map"
               width="780"
               height="440"
+              style={{ width: "100%", maxWidth: "100%", height: "auto", maxHeight: "430px" }}
               viewBox="0 0 780 440"
               preserveAspectRatio="xMidYMid meet"
               role="img"
