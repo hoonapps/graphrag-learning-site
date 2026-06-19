@@ -9,44 +9,44 @@ const routeContent: Record<RouteKey, { badge: string; title: string; body: strin
     badge: "의미가 비슷한 문서 조각을 찾을 때",
     title: "Vector Search",
     body:
-      "질문과 문서 청크를 임베딩으로 바꾼 뒤 의미적으로 가까운 내용을 찾습니다. LangChain RAG 실습의 기본 검색 축입니다.",
+      "임베딩은 문장을 숫자 벡터로 바꿔 의미가 가까운 문서를 찾는 기술입니다. 사용자가 정확한 단어를 몰라도 비슷한 의미의 문서를 찾을 수 있어서 RAG의 기본 검색 축이 됩니다.",
     items: [
-      "예: '퇴직금 산정 방식 설명해줘'",
-      "장점: 표현이 달라도 의미가 가까우면 검색됨",
-      "주의: 관계, 순서, 소유 구조를 직접 설명하기 어렵습니다.",
+      "좋은 질문: '영상 편집용 노트북에서 발열이 중요한 이유 알려줘'",
+      "강점: 표현이 달라도 의미가 가까우면 검색됩니다.",
+      "한계: 관계, 소유, 계층, 정확한 조건 비교에는 약합니다.",
     ],
   },
   fulltext: {
-    badge: "정확한 고유명사, 코드, 키워드가 중요할 때",
+    badge: "정확한 모델명, 티커, 조항, 고유명사가 중요할 때",
     title: "Full-text Search",
     body:
-      "Neo4j의 전문 검색 인덱스로 사람 이름, ETF 티커, 법 조항명, 기업명처럼 정확한 문자열 단서를 찾습니다.",
+      "전문 검색은 정확한 문자열 단서를 놓치지 않기 위한 검색입니다. Neo4j에서는 Full-text index를 만들어 제품명, 법 조항, 기업명, 기자명 같은 고유명사를 빠르게 찾을 수 있습니다.",
     items: [
-      "예: 'KODEX 200 관련 상품 찾아줘'",
-      "장점: 키워드 기반 매칭이 강함",
-      "주의: 한국어는 nori, CJK 분석기 같은 언어 설정이 품질에 영향을 줍니다.",
+      "좋은 질문: 'RTX 4070 SUPER가 들어간 견적 찾아줘'",
+      "강점: 모델명, 코드, 조항명처럼 정확한 단어 검색에 강합니다.",
+      "한계: 한국어는 CJK/nori 분석기 같은 언어 처리가 품질을 좌우합니다.",
     ],
   },
   cypher: {
     badge: "관계와 조건을 따라가야 할 때",
     title: "Text2Cypher",
     body:
-      "LLM이 자연어 질문을 Cypher 쿼리로 바꾸고, Neo4j가 관계 조건을 따라 결과를 반환합니다.",
+      "Text2Cypher는 자연어 질문을 Cypher 쿼리로 바꿔 그래프 데이터베이스에서 관계 조건을 직접 탐색합니다. 온톨로지와 스키마 설명이 정확할수록 좋은 쿼리가 나옵니다.",
     items: [
-      "예: 'A회사를 많이 언급한 언론사와 기자를 보여줘'",
-      "장점: 그래프 구조를 직접 활용해 근거를 좁힙니다.",
-      "주의: 온톨로지와 스키마 설명이 부정확하면 쿼리도 흔들립니다.",
+      "좋은 질문: 'AM5 소켓 CPU와 호환되는 B650 견적 중 750W 파워 이상만 보여줘'",
+      "강점: 노드와 관계를 따라가며 조건을 정확히 걸 수 있습니다.",
+      "한계: 스키마가 불명확하면 LLM이 존재하지 않는 관계를 만들 수 있습니다.",
     ],
   },
   hybrid: {
     badge: "실서비스 답변 품질을 높이고 싶을 때",
     title: "Enhanced GraphRAG",
     body:
-      "벡터 검색으로 후보 문서를 찾고, 그래프 탐색으로 관련 엔티티와 관계를 확장한 뒤 LLM에게 근거를 제공합니다.",
+      "Enhanced GraphRAG는 벡터 검색으로 후보 문서를 찾고, 그래프 탐색으로 관련 엔티티와 관계를 확장한 뒤, 검증된 근거만 LLM에게 전달합니다.",
     items: [
-      "예: '이 규정 위반의 원인과 담당 부서를 근거와 함께 알려줘'",
-      "장점: 의미 검색과 관계 검색을 함께 씁니다.",
-      "주의: LangGraph 같은 상태 기반 워크플로로 라우팅과 검증 단계를 분리하는 편이 좋습니다.",
+      "좋은 질문: '200만원 영상 편집용 PC 견적을 근거와 함께 추천해줘'",
+      "강점: 의미 검색과 관계 검색을 함께 사용해 설명 가능한 답변을 만듭니다.",
+      "실무 팁: LangGraph로 검색, 검증, 재검색, 답변 생성을 노드로 분리합니다.",
     ],
   },
 };
@@ -56,6 +56,234 @@ const mapNodes = [
   { title: "LCEL Chain", x: 390, y: 150, r: 62, a: "LCEL", b: "체인" },
   { title: "Knowledge Graph", x: 455, y: 275, r: 68, a: "Neo4j", b: "지식그래프" },
   { title: "LangGraph Agent", x: 660, y: 195, r: 64, a: "LangGraph", b: "워크플로" },
+];
+
+const curriculum = [
+  {
+    title: "LLM 기초와 구조화 출력",
+    goal: "모델이 왜 같은 질문에도 다른 답을 하는지, JSON 출력은 왜 깨지는지 이해합니다.",
+    concepts: ["temperature", "system/user message", "Pydantic schema", "JSON mode"],
+    mastery:
+      "LLM은 확률적으로 다음 토큰을 고르는 모델입니다. temperature는 후보 토큰 분포를 얼마나 넓게 탐색할지 정합니다. 실서비스에서는 자유로운 글보다 구조화 출력이 중요하므로 Pydantic 같은 스키마로 결과 형식을 강제합니다.",
+  },
+  {
+    title: "LangChain Core와 LCEL",
+    goal: "Prompt, model, parser, retriever를 파이프라인처럼 조립합니다.",
+    concepts: ["Runnable", "RunnableSequence", "RunnableParallel", "RunnablePassthrough"],
+    mastery:
+      "LCEL의 핵심은 모든 단계를 Runnable로 보고 input과 output 계약을 맞추는 것입니다. prompt | model | parser 형태는 단순 문법이 아니라 관찰 가능하고 재사용 가능한 실행 그래프의 기본 단위입니다.",
+  },
+  {
+    title: "프롬프트와 Few-shot",
+    goal: "좋은 답을 우연히 얻는 것이 아니라 재현 가능한 입력 형식을 설계합니다.",
+    concepts: ["Zero-shot", "One-shot", "Few-shot", "Example selector"],
+    mastery:
+      "프롬프트는 말투를 꾸미는 문장이 아니라 모델에게 작업 정의, 입력 형식, 출력 형식, 실패 조건을 알려주는 인터페이스입니다. Few-shot은 모델에게 규칙을 설명하는 대신 정답 패턴을 보여주는 방식입니다.",
+  },
+  {
+    title: "Tool Calling과 Agent",
+    goal: "LLM이 직접 모르는 일을 도구 호출로 해결하게 만듭니다.",
+    concepts: ["tool schema", "bind_tools", "ReAct", "tool result grounding"],
+    mastery:
+      "Tool Calling은 함수 시그니처를 모델의 선택지로 제공하는 구조입니다. Agent는 Reasoning과 Acting을 반복하면서 필요한 도구를 고르고, 결과를 다시 컨텍스트로 넣어 다음 행동을 결정합니다.",
+  },
+  {
+    title: "RAG 파이프라인",
+    goal: "모델 파라미터가 아니라 외부 근거를 주입해 환각을 줄입니다.",
+    concepts: ["loader", "chunking", "embedding", "vector store", "retriever"],
+    mastery:
+      "RAG는 질문과 관련된 근거 문서를 찾아 프롬프트에 넣는 패턴입니다. 핵심 품질은 모델보다 청크 전략, 메타데이터, 검색 방식, 근거 압축, 출처 검증에서 갈립니다.",
+  },
+  {
+    title: "Neo4j와 Cypher",
+    goal: "데이터를 표가 아니라 노드와 관계로 생각합니다.",
+    concepts: ["Node", "Relationship", "MATCH", "WHERE", "variable path"],
+    mastery:
+      "그래프 DB는 연결 자체가 1급 데이터입니다. 누가 무엇을 만들었는지, 어떤 부품이 어떤 견적에 들어가는지, 어떤 리뷰가 어떤 리스크를 유발했는지 같은 관계형 질문에 강합니다.",
+  },
+  {
+    title: "온톨로지와 GraphRAG",
+    goal: "LLM이 사용할 데이터 세계의 설계도를 만듭니다.",
+    concepts: ["ontology", "constraint", "LLMGraphTransformer", "Text2Cypher"],
+    mastery:
+      "온톨로지는 노드, 관계, 속성, 제약조건의 합의입니다. GraphRAG는 벡터 검색만으로 찾기 어려운 관계와 경로를 그래프로 보강해 설명 가능한 RAG를 만듭니다.",
+  },
+  {
+    title: "LangGraph 제품화",
+    goal: "검색, 검증, 재시도, 답변 생성을 상태 기반 워크플로로 분리합니다.",
+    concepts: ["StateGraph", "node", "edge", "conditional edge", "checkpoint"],
+    mastery:
+      "LangGraph는 Agent를 한 덩어리 함수로 두지 않고 상태 전이로 설계합니다. 어떤 단계에서 실패했는지 추적하고, 낮은 확신도면 재검색하거나 사용자에게 되묻는 구조를 만들 수 있습니다.",
+  },
+];
+
+const deepLessons = [
+  {
+    number: "01",
+    title: "LLM은 지식 저장소가 아니라 확률적 생성기입니다",
+    explanation:
+      "LLM은 데이터베이스처럼 사실을 조회하지 않습니다. 질문을 토큰으로 보고 다음 토큰의 확률분포를 계산합니다. 그래서 같은 질문도 temperature, system prompt, 이전 대화, 출력 형식에 따라 달라질 수 있습니다.",
+    whyItMatters:
+      "서비스에서는 그럴듯한 문장보다 안정적인 계약이 중요합니다. 그래서 JSON schema, Pydantic, structured output을 사용해 모델 출력이 다음 코드 단계에서 깨지지 않게 만듭니다.",
+    code: `from pydantic import BaseModel
+
+class ProductIntent(BaseModel):
+    budget_krw: int
+    purpose: str
+    must_haves: list[str]
+    exclusions: list[str]`,
+    takeaway: "LLM 출력은 신뢰하지 말고 검증 가능한 구조로 받습니다.",
+  },
+  {
+    number: "02",
+    title: "LCEL은 AI 파이프라인의 배관입니다",
+    explanation:
+      "LangChain Expression Language는 prompt, model, retriever, parser, custom function을 같은 방식으로 연결합니다. 각 단계는 Runnable이고, 입력과 출력만 맞으면 교체할 수 있습니다.",
+    whyItMatters:
+      "나중에 Gemini에서 OpenAI로, FAISS에서 Neo4jVector로, 단순 parser에서 Pydantic parser로 바꿔도 전체 구조를 유지할 수 있습니다.",
+    code: `chain = prompt | model | parser
+
+rag_chain = {
+    "context": retriever,
+    "question": RunnablePassthrough(),
+} | prompt | model | parser`,
+    takeaway: "LCEL을 알면 RAG, Agent, GraphRAG의 실행 단위를 읽을 수 있습니다.",
+  },
+  {
+    number: "03",
+    title: "프롬프트는 요청 문장이 아니라 인터페이스입니다",
+    explanation:
+      "좋은 프롬프트는 역할, 입력 데이터, 판단 기준, 출력 형식, 금지사항을 분리합니다. Few-shot은 '이런 입력이면 이런 출력'이라는 패턴을 모델에게 보여주는 방식입니다.",
+    whyItMatters:
+      "Text2Cypher, 리뷰 리스크 분석, 견적 점수화처럼 정확한 형식이 필요한 작업은 말투보다 출력 계약이 중요합니다.",
+    code: `system = """
+You are a PC build analyst.
+Return only JSON.
+Never invent price or compatibility facts.
+"""
+
+human = """
+User request: {query}
+Known schema: {schema}
+"""`,
+    takeaway: "프롬프트는 LLM에게 제공하는 API 문서처럼 작성합니다.",
+  },
+  {
+    number: "04",
+    title: "Tool Calling은 LLM에게 손과 발을 달아주는 방식입니다",
+    explanation:
+      "LLM은 자체적으로 웹을 검색하거나 DB를 조회하지 못합니다. Tool schema를 주면 모델은 어떤 함수를 어떤 인자로 호출해야 할지 결정합니다.",
+    whyItMatters:
+      "PC 구매 AI에서는 가격 검색, 부품 호환성 체크, 벤치마크 조회, 리뷰 요약이 모두 도구가 됩니다. 도구 결과를 다시 모델에게 넣어 근거 있는 결론을 만듭니다.",
+    code: `@tool
+def check_compatibility(cpu_socket: str, board_socket: str, psu_watt: int) -> dict:
+    return {
+        "socket_ok": cpu_socket == board_socket,
+        "psu_ok": psu_watt >= 650,
+    }`,
+    takeaway: "Agent의 품질은 모델보다 도구 설계와 결과 검증에서 갈립니다.",
+  },
+  {
+    number: "05",
+    title: "RAG는 문서를 붙이는 기술이 아니라 근거 선택 기술입니다",
+    explanation:
+      "RAG는 문서 로드, 청크 분할, 임베딩, 저장, 검색, 답변 생성으로 이어집니다. 중요한 것은 많은 문서를 넣는 것이 아니라 질문에 맞는 근거만 압축해 넣는 것입니다.",
+    whyItMatters:
+      "잘못된 청크는 좋은 모델도 망칩니다. 제목, 섹션, 날짜, 출처, 제품명 같은 메타데이터가 있어야 검색 결과를 필터링하고 답변 근거를 설명할 수 있습니다.",
+    code: `docs = loader.load()
+chunks = splitter.split_documents(docs)
+vectorstore.add_documents(chunks)
+context = retriever.invoke(question)`,
+    takeaway: "RAG 품질은 chunking, metadata, retriever, reranker의 합입니다.",
+  },
+  {
+    number: "06",
+    title: "Neo4j는 관계 질문을 위한 검색 엔진입니다",
+    explanation:
+      "표 데이터는 row 중심이지만 그래프는 관계 중심입니다. Build가 Component를 사용하고, Offer가 Seller에 의해 제공되고, Review가 RiskSignal을 유발하는 구조를 자연스럽게 표현합니다.",
+    whyItMatters:
+      "질문이 '무엇과 무엇이 연결되어 있는가', '어떤 경로로 영향을 주는가', '이 조건을 만족하는 관계만 골라라'라면 Cypher가 벡터 검색보다 정확합니다.",
+    code: `MATCH (b:Build)-[:USES]->(gpu:Component {type: "GPU"})
+MATCH (b)-[:CHECKED_BY]->(signal:CompatibilitySignal)
+WHERE gpu.name CONTAINS "RTX 4070" AND signal.status = "ok"
+RETURN b.name, gpu.name, signal.reason`,
+    takeaway: "GraphRAG의 힘은 문장 유사도가 아니라 관계 탐색에서 나옵니다.",
+  },
+  {
+    number: "07",
+    title: "온톨로지는 AI가 보는 세계의 설계도입니다",
+    explanation:
+      "온톨로지는 어떤 개념을 노드로 둘지, 어떤 동사를 관계로 둘지, 어떤 속성을 필수로 둘지 정한 규칙입니다. 설계가 흔들리면 LLMGraphTransformer와 Text2Cypher도 흔들립니다.",
+    whyItMatters:
+      "PC 구매 도메인에서는 Build, Laptop, Component, Offer, Seller, Benchmark, Review, CompatibilitySignal이 핵심 노드가 됩니다.",
+    code: `(Build)-[:USES]->(Component)
+(Build)-[:SOLD_AS]->(Offer)
+(Offer)-[:OFFERED_BY]->(Seller)
+(Build)-[:CHECKED_BY]->(CompatibilitySignal)`,
+    takeaway: "온톨로지스트는 도메인을 AI가 탐색 가능한 구조로 바꾸는 사람입니다.",
+  },
+  {
+    number: "08",
+    title: "LangGraph는 Agent를 운영 가능한 시스템으로 바꿉니다",
+    explanation:
+      "복잡한 Agent를 while loop 하나로 만들면 디버깅이 어렵습니다. LangGraph는 상태, 노드, 엣지, 조건 분기를 명시해 어디서 실패했는지 추적할 수 있게 합니다.",
+    whyItMatters:
+      "검색 결과가 부족하면 재검색, 가격 출처가 없으면 verifier에서 차단, 호환성 확신이 낮으면 사용자에게 질문하는 구조를 만들 수 있습니다.",
+    code: `workflow = StateGraph(PurchaseState)
+workflow.add_node("intent_parser", parse_intent)
+workflow.add_node("compatibility_checker", check_parts)
+workflow.add_node("report_writer", write_report)
+workflow.add_edge("intent_parser", "compatibility_checker")`,
+    takeaway: "LangGraph를 쓰면 데모 Agent가 아니라 관찰 가능한 제품 워크플로가 됩니다.",
+  },
+];
+
+const labs = [
+  {
+    title: "실습 1. PC 구매 요청을 구조화하기",
+    input: "영상 편집과 게임용 데스크톱 200만원 안에서 맞춰줘. QHD 144Hz, 32GB RAM이면 좋겠어.",
+    output: `{
+  "category": "desktop_pc",
+  "budget_krw": 2000000,
+  "purpose": ["video_editing", "qhd_gaming"],
+  "must_haves": ["QHD 144Hz", "32GB RAM"],
+  "exclusions": ["used_parts", "refurbished"]
+}`,
+    lesson:
+      "자연어를 바로 검색하지 말고 먼저 의도를 구조화합니다. 이 단계가 좋아야 검색어, 필터, 점수화가 안정됩니다.",
+  },
+  {
+    title: "실습 2. 벡터 RAG와 그래프 검색을 분리하기",
+    input: "RTX 4070 견적 중 파워 용량이 충분하고 리뷰에서 소음 불만이 적은 후보를 찾아줘.",
+    output: `Vector: 리뷰/벤치마크 문서에서 소음 불만 근거 검색
+Cypher: Build-USES-Component, Build-CHECKED_BY-Signal 관계 탐색
+Merge: 점수표에 review_trust와 compatibility를 함께 반영`,
+    lesson:
+      "문서 의미 검색과 관계 조건 검색은 같은 문제가 아닙니다. GraphRAG는 두 검색 결과를 합쳐 근거를 만듭니다.",
+  },
+  {
+    title: "실습 3. Verifier로 환각 차단하기",
+    input: "추천 리포트 초안에 가격, 출처, 호환성 근거가 모두 있는지 검사합니다.",
+    output: `if not citations:
+    block("출처 없는 추천")
+if price.captured_at is None:
+    block("가격 수집 시각 없음")
+if compatibility.status != "ok":
+    ask_follow_up("호환성 확인 필요")`,
+    lesson:
+      "LLM이 만든 답을 그대로 사용자에게 보여주지 않습니다. 제품에서는 verifier가 마지막 방어선입니다.",
+  },
+];
+
+const productWorkflow = [
+  ["Intent Parser", "예산, 용도, 카테고리, 필수 조건, 제외 조건을 구조화합니다."],
+  ["Query Planner", "가격, 스펙, 벤치마크, 리뷰를 어디서 찾을지 검색 계획을 만듭니다."],
+  ["Collector", "가격 비교 소스, 공식 스토어, 리뷰 문서에서 후보를 수집합니다."],
+  ["Compatibility", "CPU 소켓, 보드, RAM, PSU, 케이스 간섭을 규칙으로 점검합니다."],
+  ["Retriever", "리뷰와 벤치마크는 벡터 검색, 부품 관계는 Cypher로 검색합니다."],
+  ["Scoring", "목적 적합도, 가격, 리뷰 신뢰도, 구매 안정성, 호환성을 점수화합니다."],
+  ["Verifier", "출처 누락, 가격 시점, 호환성 근거 부족을 차단합니다."],
+  ["Report", "TOP 3, 제외 후보, 구매 전 체크리스트를 생성합니다."],
 ];
 
 export default function Home() {
@@ -70,32 +298,33 @@ export default function Home() {
           <span className="brand-mark">G</span>
           <span>
             <strong>GraphRAG Learning Map</strong>
-            <small>LangChain to Neo4j product path</small>
+            <small>LangChain to Neo4j masterclass</small>
           </span>
         </a>
         <nav aria-label="주요 섹션">
-          <a href="#roadmap">로드맵</a>
-          <a href="#ontology">온톨로지</a>
-          <a href="#retrieval">검색 전략</a>
-          <a href="#product">제품 아이디어</a>
+          <a href="#curriculum">커리큘럼</a>
+          <a href="#masterclass">핵심 강의</a>
+          <a href="#labs">실습</a>
+          <a href="#product">제품화</a>
         </nav>
       </header>
 
       <main>
         <section className="workspace" id="overview">
           <div className="panel intro-panel">
-            <div className="section-kicker">강의 자료 기반 정리</div>
+            <div className="section-kicker">강의 자료 기반 마스터클래스</div>
             <h1>LangChain 기초에서 GraphRAG 제품까지 한 번에 연결하기</h1>
             <p>
-              두 강의의 핵심은 단순히 “LLM을 호출하는 법”이 아니라, 문서와 데이터의 관계를
-              모델링하고 검색 경로를 설계해서 실제 서비스 답변 품질을 높이는 것입니다.
+              이 페이지는 목차가 아니라 수업 자료입니다. LLM 호출, LCEL, 프롬프트, Tool Calling,
+              Agent, RAG, Neo4j, Cypher, 온톨로지, GraphRAG, LangGraph 제품화까지 한 흐름으로
+              이해하도록 구성했습니다.
             </p>
             <div className="quick-grid" aria-label="핵심 학습 축">
               {[
-                ["01", "LCEL", "Prompt, model, parser, retriever를 파이프처럼 조립"],
-                ["02", "Agent", "Tool calling과 ReAct로 필요한 행동을 선택"],
-                ["03", "Neo4j", "노드와 관계로 지식의 구조를 저장"],
-                ["04", "GraphRAG", "벡터 검색과 그래프 탐색을 결합"],
+                ["01", "LLM", "확률적 생성, 파라미터, 구조화 출력"],
+                ["02", "LCEL", "Runnable로 연결하는 AI 파이프라인"],
+                ["03", "Graph", "Neo4j, Cypher, 온톨로지 설계"],
+                ["04", "Product", "LangGraph 기반 SpecPilot AI 제품화"],
               ].map(([num, title, body]) => (
                 <div key={num}>
                   <span>{num}</span>
@@ -108,7 +337,7 @@ export default function Home() {
 
           <section className="panel graph-panel" aria-label="GraphRAG 구조 시각화">
             <div className="panel-title">
-              <span>학습 흐름</span>
+              <span>개념 지도</span>
               <strong>{activeNode}</strong>
             </div>
             <svg className="knowledge-map" viewBox="0 0 780 440" role="img">
@@ -145,27 +374,57 @@ export default function Home() {
           </section>
         </section>
 
-        <section className="band" id="roadmap">
+        <section className="band" id="curriculum">
           <div className="section-heading">
             <div>
-              <span className="section-kicker">학습 순서</span>
-              <h2>강의 내용을 제품 개발 순서로 재배열</h2>
+              <span className="section-kicker">Full curriculum</span>
+              <h2>이 순서대로 이해하면 전체 스택이 연결됩니다</h2>
             </div>
-            <p>입문 강의와 GraphRAG 강의를 섞어서 “무엇을 먼저 이해해야 하는지” 기준으로 다시 묶었습니다.</p>
+            <p>
+              강의의 각 섹션을 제품 개발 순서로 재배열했습니다. 단순 암기가 아니라 어떤 문제를
+              해결하기 위해 다음 개념이 필요한지 따라가면 됩니다.
+            </p>
           </div>
-          <div className="timeline">
-            {[
-              ["LLM 호출과 출력 제어", "temperature, JSON 출력, Pydantic 구조화 출력으로 답변 형식을 통제합니다."],
-              ["LCEL로 RAG 파이프라인 조립", "RunnableSequence, Passthrough, Parallel, Lambda를 사용해 검색과 생성을 연결합니다."],
-              ["Tool Calling과 Agent", "검색, 계산, 그래프 쿼리 같은 도구를 LLM이 선택하게 하고 실행 루프를 설계합니다."],
-              ["Neo4j와 Cypher", "노드, 관계, 속성, MATCH, WHERE, 경로 탐색으로 연결된 데이터를 질의합니다."],
-              ["온톨로지 설계", "도메인의 개념, 관계, 제약조건을 정해서 LLM이 데이터를 그래프로 바꾸는 기준을 만듭니다."],
-              ["GraphRAG 제품화", "Full-text, Vector, Text2Cypher, 경로 탐색을 질문 유형별로 라우팅합니다."],
-            ].map(([title, body], index) => (
-              <article key={title}>
-                <span>{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
+          <div className="curriculum-grid">
+            {curriculum.map((item, index) => (
+              <article className="lesson-card" key={item.title}>
+                <span className="lesson-index">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{item.title}</h3>
+                <p className="lesson-goal">{item.goal}</p>
+                <div className="concept-list">
+                  {item.concepts.map((concept) => <span key={concept}>{concept}</span>)}
+                </div>
+                <p>{item.mastery}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="masterclass" id="masterclass">
+          <div className="section-heading">
+            <div>
+              <span className="section-kicker">Core lectures</span>
+              <h2>핵심 개념 강의</h2>
+            </div>
+            <p>
+              각 개념은 정의만 외우면 쓸 수 없습니다. 아래 강의는 실무에서 왜 필요한지,
+              어떤 실패를 막는지, 어떤 코드 형태로 나타나는지까지 함께 설명합니다.
+            </p>
+          </div>
+          <div className="deep-stack">
+            {deepLessons.map((lesson) => (
+              <article className="deep-lesson" key={lesson.number}>
+                <div className="deep-number">{lesson.number}</div>
+                <div>
+                  <h3>{lesson.title}</h3>
+                  <p>{lesson.explanation}</p>
+                  <div className="why-box">
+                    <strong>왜 중요한가</strong>
+                    <span>{lesson.whyItMatters}</span>
+                  </div>
+                  <pre><code>{lesson.code}</code></pre>
+                  <p className="takeaway">{lesson.takeaway}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -174,20 +433,21 @@ export default function Home() {
         <section className="split" id="ontology">
           <div>
             <span className="section-kicker">Ontologist</span>
-            <h2>온톨로지스트는 무엇을 하는 사람인가</h2>
+            <h2>온톨로지스트는 AI가 볼 세계를 설계합니다</h2>
             <p>
-              온톨로지스트는 “AI가 이해할 데이터 세계의 설계자”에 가깝습니다. 어떤 것을
-              노드로 둘지, 어떤 연결을 관계로 둘지, 어떤 속성과 제약조건이 필요한지 정리합니다.
+              온톨로지스트는 “무엇을 노드로 둘 것인가”, “어떤 동사를 관계로 둘 것인가”,
+              “어떤 속성이 없으면 데이터로 인정하지 않을 것인가”를 정합니다. GraphRAG에서
+              온톨로지는 검색 품질의 바닥입니다.
             </p>
             <div className="definition-list">
-              <div><strong>Node</strong><span>회사, 상품, 법 조항, 뉴스, 기자, 사람 같은 대상</span></div>
-              <div><strong>Relationship</strong><span>발행했다, 투자한다, 포함한다, 위반한다 같은 연결</span></div>
-              <div><strong>Property</strong><span>날짜, 금액, 카테고리, 위험등급, 문서 위치 같은 값</span></div>
-              <div><strong>Constraint</strong><span>중복 방지, 필수 속성, 허용 관계 같은 품질 규칙</span></div>
+              <div><strong>Node</strong><span>Build, Laptop, Component, Offer, Review 같은 대상</span></div>
+              <div><strong>Relationship</strong><span>USES, SOLD_AS, OFFERED_BY, CHECKED_BY 같은 연결</span></div>
+              <div><strong>Property</strong><span>cpu_socket, psu_watt, price, captured_at 같은 값</span></div>
+              <div><strong>Constraint</strong><span>중복 방지와 필수 속성을 보장하는 데이터 품질 규칙</span></div>
             </div>
           </div>
           <aside className="panel ontology-card">
-            <h3>예시: PC 구매 QA 온톨로지</h3>
+            <h3>PC 구매 QA 온톨로지</h3>
             <pre><code>{`(Build)-[:USES]->(Component)
 (Build)-[:SOLD_AS]->(Offer)
 (Offer)-[:OFFERED_BY]->(Seller)
@@ -205,7 +465,7 @@ export default function Home() {
               <span className="section-kicker">Retrieval router</span>
               <h2>질문에 따라 검색 방식을 바꿔야 합니다</h2>
             </div>
-            <p>버튼을 눌러 어떤 질문이 어떤 검색 전략으로 가야 하는지 확인하세요.</p>
+            <p>좋은 GraphRAG는 모든 질문을 벡터 검색으로 보내지 않습니다.</p>
           </div>
           <div className="router">
             <div className="router-controls" role="tablist" aria-label="검색 방식 선택">
@@ -230,40 +490,60 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="split product-split" id="product">
-          <div>
-            <span className="section-kicker">실제 제품형 프로젝트</span>
-            <h2>SpecPilot AI</h2>
-            <p>
-              컴퓨터 견적과 노트북 구매를 위한 AI 의사결정 에이전트입니다. 예산, 용도, 모니터
-              해상도, 필수 조건을 받아 부품 호환성, 가격, 리뷰, 벤치마크 근거를 함께 비교합니다.
-            </p>
-            <div className="product-actions">
-              <a className="primary-link" href="https://github.com/hoonapps/specpilot-ai">제품 레포 보기</a>
-              <a className="secondary-link" href="https://github.com/hoonapps/graphrag-learning-site">사이트 레포 보기</a>
+        <section className="labs" id="labs">
+          <div className="section-heading">
+            <div>
+              <span className="section-kicker">Hands-on labs</span>
+              <h2>실습으로 개념을 묶기</h2>
             </div>
+            <p>이 세 가지 실습을 이해하면 LangChain, LangGraph, Neo4j가 왜 함께 쓰이는지 보입니다.</p>
           </div>
-          <div className="idea-grid">
-            {[
-              ["1. Desktop Build Copilot", "CPU/GPU/보드/파워 호환성과 예산을 기준으로 PC 견적 TOP 3를 추천합니다."],
-              ["2. Laptop Advisor", "영상 편집, 개발, 게임, 사무 목적에 맞춰 노트북 성능과 휴대성을 비교합니다."],
-              ["3. Upgrade Planner", "현재 부품에서 병목을 찾고 최소 교체로 성능을 올리는 경로를 제안합니다."],
-              ["4. Price Watch", "부품 가격이 목표 예산에 들어오면 재조회와 알림으로 구매 타이밍을 잡습니다."],
-            ].map(([title, body]) => (
-              <article key={title}>
-                <h3>{title}</h3>
-                <p>{body}</p>
+          <div className="lab-grid">
+            {labs.map((lab) => (
+              <article className="lab-card" key={lab.title}>
+                <h3>{lab.title}</h3>
+                <p><strong>입력</strong> {lab.input}</p>
+                <pre><code>{lab.output}</code></pre>
+                <p>{lab.lesson}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="source-strip" aria-label="참고한 강의와 공식 문서">
-          <strong>References</strong>
-          <a href="https://www.inflearn.com/course/graphrag-%EC%A7%80%EC%8B%9D%EA%B7%B8%EB%9E%98%ED%94%84-rag%EC%8B%9C%EC%8A%A4%ED%85%9C">Inflearn GraphRAG course</a>
-          <a href="https://www.inflearn.com/course/%EC%9E%85%EB%AC%B8%EC%9E%90%EB%A5%BC%EC%9C%84%ED%95%9C-%EB%9E%AD%EC%B2%B4%EC%9D%B8-%EA%B8%B0%EC%B4%88">Inflearn LangChain course</a>
-          <a href="https://docs.langchain.com/oss/python/langgraph/overview">LangGraph docs</a>
-          <a href="https://neo4j.com/labs/genai-ecosystem/langchain/">Neo4j LangChain integration</a>
+        <section className="product-section" id="product">
+          <div className="section-heading">
+            <div>
+              <span className="section-kicker">Productization</span>
+              <h2>SpecPilot AI로 제품화하기</h2>
+            </div>
+            <p>
+              강의 개념을 실제 제품에 연결하면 컴퓨터 견적과 노트북 구매 의사결정 에이전트가 됩니다.
+              여기서는 RAG가 문서 검색을, Neo4j가 부품 관계를, LangGraph가 전체 실행 흐름을 담당합니다.
+            </p>
+          </div>
+          <div className="workflow-grid">
+            {productWorkflow.map(([title, body], index) => (
+              <article key={title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="product-summary panel">
+            <div>
+              <h3>최종적으로 만들 수 있는 것</h3>
+              <p>
+                사용자는 “QHD 144Hz 영상 편집/게임용 PC 200만원 안에서 맞춰줘”라고 말합니다.
+                Agent는 요청을 구조화하고, 후보 견적을 수집하고, 그래프에서 부품 호환성을 검증하고,
+                리뷰/벤치마크 근거를 검색한 뒤 TOP 3와 제외 후보를 설명합니다.
+              </p>
+            </div>
+            <div className="product-actions">
+              <a className="primary-link" href="https://github.com/hoonapps/specpilot-ai">제품 레포 보기</a>
+              <a className="secondary-link" href="https://github.com/hoonapps/graphrag-learning-site">사이트 레포 보기</a>
+            </div>
+          </div>
         </section>
       </main>
     </>
