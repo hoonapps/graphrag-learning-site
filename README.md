@@ -1,24 +1,37 @@
 # GraphRAG Learning Map
 
-LangChain 기초 강의와 Neo4j GraphRAG 강의 내용을 제품 개발 순서로 다시 정리한 한국어 학습 웹사이트입니다.
+Next.js learning site that explains LangChain, LangGraph, Neo4j, ontology design, RAG and GraphRAG in Korean.
 
-## What it covers
+The site also connects the course material to a concrete product project: **SpecPilot AI**, a PC and laptop purchase decision agent.
 
-- LLM 파라미터, 구조화 출력, Prompt
-- LangChain Core / LCEL / Runnable
-- Tool Calling, Agent, ReAct
-- RAG, embedding, chunking
-- Neo4j, Cypher, Knowledge Graph
-- Ontology, Text2Cypher, Enhanced GraphRAG
-- 실제 제품형 프로젝트 아이디어: Ontology Studio
+## Tech stack
+
+- Next.js App Router
+- React
+- TypeScript
+- CSS modules via global app CSS
+- Static export for GitHub Pages
 
 ## Run locally
 
 ```bash
-python3 -m http.server 5173
+npm install
+npm run dev
 ```
 
-Open `http://localhost:5173`.
+Open `http://localhost:3000`.
+
+## Build
+
+```bash
+npm run build
+```
+
+The app uses `output: "export"`, so the static build is written to `out/`.
+
+## Deployment
+
+GitHub Actions deploys `out/` to GitHub Pages on every push to `main`.
 
 ## Source context
 
