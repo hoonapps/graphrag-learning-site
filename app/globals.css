@@ -285,9 +285,11 @@ p {
   width: 100%;
   max-width: 100%;
   height: auto;
+  min-height: 260px;
   max-height: min(430px, 52vh);
   aspect-ratio: 39 / 22;
   flex: 0 0 auto;
+  overflow: visible;
 }
 
 .link {
@@ -809,6 +811,7 @@ code {
   }
 
   .knowledge-map {
+    min-height: 220px;
     max-height: 300px;
   }
 

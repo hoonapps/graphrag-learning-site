@@ -346,7 +346,10 @@ export default function Home() {
             </div>
             <svg
               className="knowledge-map"
+              width="780"
+              height="440"
               viewBox="0 0 780 440"
+              preserveAspectRatio="xMidYMid meet"
               role="img"
               aria-label="LLM, LCEL, Neo4j, LangGraph가 연결되는 GraphRAG 개념 지도"
             >
