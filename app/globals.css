@@ -124,6 +124,7 @@ main {
   gap: 22px;
   align-items: stretch;
   min-height: calc(100vh - 104px);
+  max-width: 100%;
 }
 
 .panel {
@@ -138,6 +139,10 @@ main {
   flex-direction: column;
   justify-content: center;
   padding: clamp(24px, 4vw, 54px);
+}
+
+.intro-panel > p {
+  max-width: 58ch;
 }
 
 .section-kicker {
@@ -167,6 +172,10 @@ h1 {
   overflow-wrap: break-word;
 }
 
+h1 span {
+  display: block;
+}
+
 h2 {
   margin-bottom: 0.85rem;
   font-size: clamp(1.8rem, 3.4vw, 3rem);
@@ -185,6 +194,8 @@ h3 {
 p {
   color: var(--muted);
   line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .quick-grid {
@@ -251,6 +262,7 @@ p {
   gap: 24px;
   overflow: hidden;
   padding: 22px;
+  contain: layout paint;
 }
 
 .panel-title {
@@ -271,8 +283,9 @@ p {
 
 .knowledge-map {
   width: 100%;
-  height: clamp(280px, 36vw, 430px);
-  min-height: 0;
+  max-width: 100%;
+  height: auto;
+  max-height: min(430px, 52vh);
   aspect-ratio: 39 / 22;
   flex: 0 0 auto;
 }
@@ -733,7 +746,7 @@ code {
   }
 
   main {
-    width: min(100% - 24px, 1180px);
+    width: min(1180px, calc(100% - 24px));
     padding-top: 18px;
   }
 
@@ -780,8 +793,23 @@ code {
     padding: 18px;
   }
 
+  h1 {
+    font-size: 1.82rem;
+    line-height: 1.12;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .intro-panel > p {
+    max-width: 26ch;
+  }
+
   .knowledge-map {
-    height: clamp(220px, 62vw, 300px);
+    max-height: 300px;
   }
 
   .route-button {

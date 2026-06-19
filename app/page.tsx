@@ -313,7 +313,11 @@ export default function Home() {
         <section className="workspace" id="overview">
           <div className="panel intro-panel">
             <div className="section-kicker">강의 자료 기반 마스터클래스</div>
-            <h1>LangChain 기초에서 GraphRAG 제품까지 한 번에 연결하기</h1>
+            <h1>
+              <span>LangChain 기초에서</span>
+              <span>GraphRAG 제품까지</span>
+              <span>한 번에 연결하기</span>
+            </h1>
             <p>
               이 페이지는 목차가 아니라 수업 자료입니다. LLM 호출, LCEL, 프롬프트, Tool Calling,
               Agent, RAG, Neo4j, Cypher, 온톨로지, GraphRAG, LangGraph 제품화까지 한 흐름으로
