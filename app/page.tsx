@@ -400,8 +400,8 @@ export default function Home() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
             gap: 22,
-            alignItems: "stretch",
-            minHeight: "calc(100vh - 104px)",
+            alignItems: "start",
+            minHeight: "auto",
             maxWidth: "100%",
           }}
         >
@@ -410,7 +410,7 @@ export default function Home() {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               minWidth: 0,
               padding: "clamp(24px, 4vw, 54px)",
               border: `1px solid ${colors.line}`,
@@ -507,7 +507,7 @@ export default function Home() {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               gap: 24,
               minWidth: 0,
               overflow: "hidden",
@@ -532,7 +532,7 @@ export default function Home() {
                 gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
                 gap: 14,
                 width: "100%",
-                maxWidth: 560,
+                maxWidth: "100%",
                 margin: "0 auto",
               }}
               role="list"
@@ -546,6 +546,9 @@ export default function Home() {
                   onClick={() => setActiveNode(node.title)}
                   role="listitem"
                   style={{
+                    display: "grid",
+                    alignContent: "center",
+                    gap: "0.35rem",
                     minHeight: 118,
                     padding: "1rem",
                     border: `1px solid ${activeNode === node.title ? colors.accent : colors.line}`,

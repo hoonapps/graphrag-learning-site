@@ -122,8 +122,8 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
   gap: 22px;
-  align-items: stretch;
-  min-height: calc(100vh - 104px);
+  align-items: start;
+  min-height: auto;
   max-width: 100%;
 }
 
@@ -137,7 +137,7 @@ main {
 .intro-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: clamp(24px, 4vw, 54px);
 }
 
@@ -258,7 +258,7 @@ p {
 .graph-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 24px;
   overflow: hidden;
   padding: 22px;
