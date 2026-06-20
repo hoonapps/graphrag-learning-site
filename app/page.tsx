@@ -412,7 +412,7 @@ export default function Home() {
               flexDirection: "column",
               justifyContent: "flex-start",
               minWidth: 0,
-              padding: "clamp(24px, 4vw, 54px)",
+              padding: "clamp(24px, 3vw, 38px)",
               border: `1px solid ${colors.line}`,
               borderRadius: 8,
               background: colors.panel,
@@ -437,8 +437,8 @@ export default function Home() {
                 marginTop: 0,
                 marginBottom: "1rem",
                 color: colors.ink,
-                fontSize: "clamp(2.05rem, 4.15vw, 3.5rem)",
-                lineHeight: 1.04,
+                fontSize: "clamp(2rem, 3.1vw, 3.05rem)",
+                lineHeight: 1.08,
                 wordBreak: "keep-all",
                 overflowWrap: "break-word",
               }}
@@ -459,7 +459,7 @@ export default function Home() {
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 210px), 1fr))",
                 gap: 12,
-                marginTop: "2rem",
+                marginTop: "1.6rem",
               }}
             >
               {[

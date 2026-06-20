@@ -165,8 +165,8 @@ p {
 
 h1 {
   margin-bottom: 1rem;
-  font-size: clamp(2.05rem, 4.15vw, 3.5rem);
-  line-height: 1.04;
+  font-size: clamp(2rem, 3.1vw, 3.05rem);
+  line-height: 1.08;
   letter-spacing: 0;
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -835,14 +835,13 @@ code {
 
 @media (max-width: 620px) {
   main {
-    width: min(1180px, calc(100% - 64px));
+    width: min(1180px, calc(100% - 32px));
   }
 
   main[style] {
-    width: min(1180px, calc(100% - 64px)) !important;
+    width: min(1180px, calc(100% - 32px)) !important;
   }
 
-  .quick-grid,
   .timeline,
   .idea-grid,
   .curriculum-grid,
@@ -853,7 +852,6 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .quick-grid[style],
   .timeline[style],
   .idea-grid[style],
   .curriculum-grid[style],
@@ -877,14 +875,14 @@ code {
   }
 
   h1 {
-    font-size: 1.82rem;
+    font-size: 1.7rem;
     line-height: 1.12;
     word-break: normal;
     overflow-wrap: anywhere;
   }
 
   h1[style] {
-    font-size: 1.82rem !important;
+    font-size: 1.7rem !important;
     line-height: 1.12 !important;
     word-break: normal !important;
     overflow-wrap: anywhere !important;
@@ -895,11 +893,15 @@ code {
   }
 
   .intro-panel > p {
-    max-width: 26ch;
+    max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 
   .intro-panel > p[style] {
-    max-width: 26ch !important;
+    max-width: 100% !important;
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
   }
 
   .knowledge-map {
@@ -911,15 +913,34 @@ code {
   }
 
   .quick-grid[style] {
-    display: flex !important;
-    flex-direction: column !important;
-    width: min(100%, calc(100vw - 104px)) !important;
-    max-width: calc(100vw - 104px) !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 1.2rem !important;
   }
 
   .quick-grid > div {
     width: 100%;
-    max-width: calc(100vw - 104px);
+    max-width: 100%;
+    padding: 0.85rem !important;
+  }
+
+  .quick-grid p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    word-break: keep-all;
+  }
+
+  .quick-grid strong {
+    font-size: 0.95rem;
+  }
+
+  .quick-grid span {
+    width: 28px !important;
+    height: 28px !important;
+    margin-bottom: 0.55rem !important;
   }
 
   .route-button {
