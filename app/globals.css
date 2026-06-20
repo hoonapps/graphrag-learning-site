@@ -265,6 +265,19 @@ p {
   contain: layout paint;
 }
 
+.graph-panel svg {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  overflow: visible;
+}
+
+.graph-panel path,
+.graph-panel circle,
+.graph-panel line {
+  vector-effect: non-scaling-stroke;
+}
+
 .panel-title {
   display: flex;
   align-items: center;
