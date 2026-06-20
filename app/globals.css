@@ -788,12 +788,12 @@ code {
   }
 
   main {
-    width: min(1180px, calc(100% - 24px));
+    width: min(1180px, calc(100% - 32px));
     padding-top: 18px;
   }
 
   main[style] {
-    width: min(1180px, calc(100% - 24px)) !important;
+    width: min(1180px, calc(100% - 32px)) !important;
     padding-top: 18px !important;
   }
 
@@ -834,6 +834,14 @@ code {
 }
 
 @media (max-width: 620px) {
+  main {
+    width: min(1180px, calc(100% - 64px));
+  }
+
+  main[style] {
+    width: min(1180px, calc(100% - 64px)) !important;
+  }
+
   .quick-grid,
   .timeline,
   .idea-grid,
@@ -900,6 +908,18 @@ code {
 
   .knowledge-map[style] {
     grid-template-columns: 1fr !important;
+  }
+
+  .quick-grid[style] {
+    display: flex !important;
+    flex-direction: column !important;
+    width: min(100%, calc(100vw - 104px)) !important;
+    max-width: calc(100vw - 104px) !important;
+  }
+
+  .quick-grid > div {
+    width: 100%;
+    max-width: calc(100vw - 104px);
   }
 
   .route-button {
