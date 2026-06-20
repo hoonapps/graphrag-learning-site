@@ -299,6 +299,13 @@ const colors = {
   blue: "#315f91",
 };
 
+const nodeLabelColors: Record<string, { background: string; color: string }> = {
+  gold: { background: "#fff3dd", color: "#8a5b10" },
+  ink: { background: "#eef0ef", color: colors.ink },
+  graph: { background: colors.panelSoft, color: colors.accentStrong },
+  blue: { background: "#e9f1fb", color: colors.blue },
+};
+
 export default function Home() {
   const [activeRoute, setActiveRoute] = useState<RouteKey>("vector");
   const [activeNode, setActiveNode] = useState("Knowledge Graph");
@@ -560,9 +567,28 @@ export default function Home() {
                     textAlign: "left",
                   }}
                 >
-                  <span className="map-node-label">{node.a}</span>
-                  <strong>{node.b}</strong>
-                  <small>{node.title}</small>
+                  <span
+                    className="map-node-label"
+                    style={{
+                      display: "inline-grid",
+                      placeItems: "center",
+                      width: "fit-content",
+                      minWidth: 52,
+                      minHeight: 30,
+                      padding: "0 0.55rem",
+                      borderRadius: 999,
+                      background: nodeLabelColors[node.tone].background,
+                      color: nodeLabelColors[node.tone].color,
+                      fontSize: "0.78rem",
+                      fontWeight: 800,
+                    }}
+                  >
+                    {node.a}
+                  </span>
+                  <strong style={{ display: "block", color: colors.ink, fontSize: "1.06rem" }}>{node.b}</strong>
+                  <small style={{ display: "block", color: colors.muted, fontSize: "0.8rem", lineHeight: 1.35 }}>
+                    {node.title}
+                  </small>
                 </button>
               ))}
             </div>
