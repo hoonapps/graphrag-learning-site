@@ -29,6 +29,12 @@ npm run build
 
 The app uses `output: "export"`, so the static build is written to `out/`.
 
+For a local static export that can be opened from the filesystem with working client-side JS, use:
+
+```bash
+npm run build:local
+```
+
 ## Deployment
 
 GitHub Actions deploys `out/` to GitHub Pages on every push to `main`.

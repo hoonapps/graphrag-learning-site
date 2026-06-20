@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:local": "LOCAL_EXPORT=true next build",
     "postbuild": "touch out/.nojekyll",
+    "postbuild:local": "touch out/.nojekyll",
     "start": "next start",
     "lint": "next lint"
   },
