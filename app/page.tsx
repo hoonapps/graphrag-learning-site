@@ -52,10 +52,10 @@ const routeContent: Record<RouteKey, { badge: string; title: string; body: strin
 };
 
 const mapNodes = [
-  { title: "LLM Foundation", x: 120, y: 210, r: 54, a: "LLM", b: "기초" },
-  { title: "LCEL Chain", x: 390, y: 150, r: 62, a: "LCEL", b: "체인" },
-  { title: "Knowledge Graph", x: 455, y: 275, r: 68, a: "Neo4j", b: "지식그래프" },
-  { title: "LangGraph Agent", x: 660, y: 195, r: 64, a: "LangGraph", b: "워크플로" },
+  { title: "LLM Foundation", a: "LLM", b: "기초", tone: "gold" },
+  { title: "LCEL Chain", a: "LCEL", b: "체인", tone: "ink" },
+  { title: "Knowledge Graph", a: "Neo4j", b: "지식그래프", tone: "graph" },
+  { title: "LangGraph Agent", a: "LangGraph", b: "워크플로", tone: "blue" },
 ];
 
 const curriculum = [
@@ -525,85 +525,44 @@ export default function Home() {
               <span style={{ color: colors.muted, fontSize: "0.88rem" }}>개념 지도</span>
               <strong style={{ color: colors.accentStrong }}>{activeNode}</strong>
             </div>
-            <svg
+            <div
               className="knowledge-map"
-              width="780"
-              height="440"
               style={{
-                display: "block",
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gap: 14,
                 width: "100%",
-                maxWidth: "100%",
-                height: "auto",
-                minHeight: 260,
-                maxHeight: "min(430px, 52vh)",
-                aspectRatio: "39 / 22",
-                overflow: "visible",
+                maxWidth: 560,
+                margin: "0 auto",
               }}
-              viewBox="0 0 780 440"
-              preserveAspectRatio="xMidYMid meet"
-              role="img"
-              aria-label="LLM, LCEL, Neo4j, LangGraph가 연결되는 GraphRAG 개념 지도"
+              role="list"
+              aria-label="LLM, LCEL, Neo4j, LangGraph가 연결되는 GraphRAG 개념 카드"
             >
-              <path
-                className="link"
-                d="M120 210 C210 80 305 70 390 150"
-                fill="none"
-                stroke="rgba(31, 37, 35, 0.16)"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
-              <path
-                className="link"
-                d="M120 210 C260 305 315 330 455 275"
-                fill="none"
-                stroke="rgba(31, 37, 35, 0.16)"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
-              <path
-                className="link"
-                d="M390 150 C480 115 565 120 660 195"
-                fill="none"
-                stroke="rgba(31, 37, 35, 0.16)"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
-              <path
-                className="link"
-                d="M455 275 C535 315 620 295 660 195"
-                fill="none"
-                stroke="rgba(31, 37, 35, 0.16)"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
-              <path
-                className="link strong"
-                d="M390 150 C430 205 430 232 455 275"
-                fill="none"
-                stroke="rgba(15, 124, 114, 0.34)"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
               {mapNodes.map((node) => (
-                <g
+                <button
                   key={node.title}
-                  className={`map-node ${activeNode === node.title ? "active" : ""}`}
-                  tabIndex={0}
-                  transform={`translate(${node.x} ${node.y})`}
+                  className={`map-node ${node.tone} ${activeNode === node.title ? "active" : ""}`}
+                  type="button"
                   onClick={() => setActiveNode(node.title)}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      setActiveNode(node.title);
-                    }
+                  role="listitem"
+                  style={{
+                    minHeight: 118,
+                    padding: "1rem",
+                    border: `1px solid ${activeNode === node.title ? colors.accent : colors.line}`,
+                    borderRadius: 8,
+                    background: activeNode === node.title ? "rgba(15, 124, 114, 0.1)" : "#fff",
+                    color: colors.ink,
+                    cursor: "pointer",
+                    font: "inherit",
+                    textAlign: "left",
                   }}
                 >
-                  <circle r={node.r} fill="#ffffff" stroke="rgba(31, 37, 35, 0.18)" strokeWidth="3" />
-                  <text y="-4" fill="#1f2523" fontSize="20" fontWeight="800" textAnchor="middle">{node.a}</text>
-                  <text y="18" fill="#1f2523" fontSize="20" fontWeight="800" textAnchor="middle">{node.b}</text>
-                </g>
+                  <span className="map-node-label">{node.a}</span>
+                  <strong>{node.b}</strong>
+                  <small>{node.title}</small>
+                </button>
               ))}
-            </svg>
+            </div>
             <div className="legend" style={{ display: "flex", flexWrap: "wrap", gap: "0.7rem", color: colors.muted, fontSize: "0.9rem" }}>
               <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
                 <i className="dot lang" style={{ display: "inline-block", width: 10, height: 10, borderRadius: 999, background: colors.gold }} />

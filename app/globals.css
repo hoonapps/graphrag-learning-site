@@ -282,53 +282,82 @@ p {
 }
 
 .knowledge-map {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
   width: 100%;
   max-width: 100%;
-  height: auto;
-  min-height: 260px;
-  max-height: min(430px, 52vh);
-  aspect-ratio: 39 / 22;
-  flex: 0 0 auto;
-  overflow: visible;
-}
-
-.link {
-  fill: none;
-  stroke: rgba(31, 37, 35, 0.16);
-  stroke-width: 5;
-  stroke-linecap: round;
-}
-
-.link.strong {
-  stroke: rgba(15, 124, 114, 0.34);
+  margin: 0 auto;
 }
 
 .map-node {
+  display: grid;
+  align-content: center;
+  gap: 0.35rem;
+  min-width: 0;
+  min-height: 118px;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
   cursor: pointer;
+  font: inherit;
+  text-align: left;
   outline: none;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
 }
 
-.map-node circle {
-  fill: #fff;
-  stroke: rgba(31, 37, 35, 0.18);
-  stroke-width: 3;
-  transition: fill 160ms ease, stroke 160ms ease, transform 160ms ease;
+.map-node strong,
+.map-node small {
+  display: block;
 }
 
-.map-node text {
-  fill: var(--ink);
-  font-size: 20px;
+.map-node strong {
+  font-size: 1.06rem;
+}
+
+.map-node small {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.map-node-label {
+  display: inline-grid;
+  place-items: center;
+  width: fit-content;
+  min-width: 52px;
+  min-height: 30px;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  background: var(--panel-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
   font-weight: 800;
-  text-anchor: middle;
-  pointer-events: none;
 }
 
-.map-node:hover circle,
-.map-node:focus-visible circle,
-.map-node.active circle {
-  fill: rgba(15, 124, 114, 0.12);
-  stroke: var(--accent);
+.map-node:hover,
+.map-node:focus-visible,
+.map-node.active {
+  border-color: var(--accent);
+  background: rgba(15, 124, 114, 0.1);
   transform: scale(1.04);
+}
+
+.map-node.gold .map-node-label {
+  background: #fff3dd;
+  color: #8a5b10;
+}
+
+.map-node.blue .map-node-label {
+  background: #e9f1fb;
+  color: var(--blue);
+}
+
+.map-node.ink .map-node-label {
+  background: #eef0ef;
+  color: var(--ink);
 }
 
 .legend {
@@ -866,13 +895,11 @@ code {
   }
 
   .knowledge-map {
-    min-height: 220px;
-    max-height: 300px;
+    grid-template-columns: 1fr;
   }
 
   .knowledge-map[style] {
-    min-height: 220px !important;
-    max-height: 300px !important;
+    grid-template-columns: 1fr !important;
   }
 
   .route-button {
