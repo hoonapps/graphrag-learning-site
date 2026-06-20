@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:local": "LOCAL_EXPORT=true next build",
+    "check": "npm run build && node scripts/check-export-layout.mjs",
     "postbuild": "touch out/.nojekyll",
     "postbuild:local": "touch out/.nojekyll",
     "start": "next start",
